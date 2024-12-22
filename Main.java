@@ -1,4 +1,3 @@
-package main;
 import java.util.Scanner;
 
 public class Main {
@@ -16,22 +15,20 @@ public class Main {
             );
             opcao = sc.nextInt();
             switch (opcao){
-                    case 0 -> System.out.println("Encerrado");
+                case 0:
+                    //evento     
+                case 1:
+                    //evento
                         
-                    case 1 -> System.out.println("Criar evento");
-                //evento
-                        
-                    case 2 -> System.out.println("Exibir todos os eventos");
-                //evento
-                        
-                    case 3 -> System.out.println("verificar vagas");
-                //evento
+                case 2:
+                    //evento
                     
-                    default -> System.out.println("Digite um número válido.");
-        
+                case 3:
+                    //evento
+                
+                default:
             }
         } while(opcao != 0);
-        
     }
     
 }

@@ -1,15 +1,16 @@
-import java.time.LocalDate;
-import java.util.Random;
+import java.util.Date;
 
 public class Pessoa {
+    static  int geradorId;
     private int id;
     private String nome;
-    private LocalDate dataNascimento;
+    private Date dataNascimento;
 
-    public Pessoa (String nome,  int day, int month, int year) {
-        this.id = new Random().nextInt(0, 1000);
+    public Pessoa (String nome,  Date dataNascimento) {
+        geradorId ++;
+        this.id = geradorId;
         this.nome = nome;
-        this.dataNascimento = LocalDate.of(day, month, year);
+        this.dataNascimento = dataNascimento;
     }
 
     public int getId() {
@@ -20,20 +21,16 @@ public class Pessoa {
         return nome;
     }
 
-    public LocalDate getDataNascimento() {
+    public Date getDataNascimento() {
         return dataNascimento;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    public void setDataNascimento(int day, int month, int year) {
-        this.dataNascimento = LocalDate.of(day, month, year);
+    public void setDataNascimento(Date dataDenascimento) {
+        this.dataNascimento = dataDenascimento;
     }
 
 }
