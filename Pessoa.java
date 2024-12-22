@@ -1,12 +1,12 @@
-import java.util.Random;
 import java.time.LocalDate;
+import java.util.Random;
 
-public class Inscritos {
+public class Pessoa {
     private int id;
     private String nome;
     private LocalDate dataNascimento;
 
-    public Inscritos (String nome,  int day, int month, int year) {
+    public Pessoa (String nome,  int day, int month, int year) {
         this.id = new Random().nextInt(0, 1000);
         this.nome = nome;
         this.dataNascimento = LocalDate.of(day, month, year);

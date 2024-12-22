@@ -11,7 +11,9 @@ public class Main {
         //menu
         int opcao = 0;
         do {
-            System.out.println("0 - Sair\n1 - Criar evento\n2 - Imprimir todos os eventos\n3 - Verificar quantidade de vagas");
+            System.out.println(
+                "0 - Sair\n1 - Criar evento\n2 - Imprimir todos os eventos\n3 - Verificar quantidade de vagas"
+            );
             opcao = sc.nextInt();
             switch (opcao){
                     case 0 -> System.out.println("Encerrado");
@@ -30,12 +32,6 @@ public class Main {
             }
         } while(opcao != 0);
         
-     
-                
-              
-
-             
-
     }
     
 }
