@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Date;
 
 public class Controle {
     private List<Evento> eventos = new ArrayList<>();
@@ -13,7 +13,7 @@ public class Controle {
         System.out.println("Digite o título da evento: ");
         String titulo = scn.nextLine();
 
-        System.out.println("Digite o tipo de evento: ");
+        System.out.println("Digite o tipo de evento (palestra/minicurso): ");
         String tipo = scn.nextLine();
         TipoEvento tipoEvento;
         if (tipo.equalsIgnoreCase("palestra")) {
@@ -28,25 +28,31 @@ public class Controle {
         Date dataInicio;
         Date dataFim = null;
         if (tipoEvento == TipoEvento.PALESTRA) {
-            System.out.println("Digite a data da palestra (Ano, mês, dia): ");
-            int ano = scn.nextInt() - 1900;
-            int mes = scn.nextInt() - 1;
+            System.out.println("Digite a sua data de nascimento (dia): ");
             int dia = scn.nextInt();
+            System.out.println("Digite a sua data de nascimento (mês): ");
+            int mes = scn.nextInt() - 1;
+            System.out.println("Digite a sua data de nascimento (ano): ");
+            int ano = scn.nextInt() - 1900;
             scn.nextLine();
             dataInicio = criarData(ano, mes, dia);
             dataFim = dataInicio;
         } else {
-            System.out.println("Digite a data de início do minicurso (Ano, mês, dia): ");
-            int anoInicio = scn.nextInt() - 1900;
-            int mesInicio = scn.nextInt() - 1;
+            System.out.println("Digite a sua data de nascimento (dia): ");
             int diaInicio = scn.nextInt();
+            System.out.println("Digite a sua data de nascimento (mês): ");
+            int mesInicio = scn.nextInt() - 1;
+            System.out.println("Digite a sua data de nascimento (ano): ");
+            int anoInicio = scn.nextInt() - 1900;
             scn.nextLine();
             dataInicio = criarData(anoInicio, mesInicio, diaInicio);
 
-            System.out.println("Digite a data final do minicurso (Ano, mês, dia): ");
-            int anoFim = scn.nextInt() - 1900;
-            int mesFim = scn.nextInt() - 1;
+            System.out.println("Digite a sua data de nascimento (dia): ");
             int diaFim = scn.nextInt();
+            System.out.println("Digite a sua data de nascimento (mês): ");
+            int mesFim = scn.nextInt() - 1;
+            System.out.println("Digite a sua data de nascimento (ano): ");
+            int anoFim = scn.nextInt() - 1900;
             scn.nextLine();
             dataFim = criarData(anoFim, mesFim, diaFim);
         }
@@ -94,10 +100,12 @@ public class Controle {
         System.out.println("Digite seu nome: ");
         String nome = scn.nextLine();
 
-        System.out.println("Digite a sua data de nascimento (Ano, mês, dia): ");
-        int ano = scn.nextInt() - 1900;
-        int mes = scn.nextInt() - 1;
+        System.out.println("Digite a sua data de nascimento (dia): ");
         int dia = scn.nextInt();
+        System.out.println("Digite a sua data de nascimento (mês): ");
+        int mes = scn.nextInt() - 1;
+        System.out.println("Digite a sua data de nascimento (ano): ");
+        int ano = scn.nextInt() - 1900;
         scn.nextLine();
         dataNascimento = criarData(ano, mes, dia);
 

@@ -4,29 +4,35 @@ public class Main {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        //Controle evento = new Controle();
-        
+        Controle controle = new Controle();
+
         //menu
         int opcao = 0;
         do {
             System.out.println(
-                "0 - Sair\n1 - Criar evento\n2 - Imprimir todos os eventos\n3 - Verificar quantidade de vagas"
+                "0 - Sair\n1 - Criar evento\n2 - Cadastrar pessoa\n3 - Inscrever uma pessoa em um evento"
             );
             opcao = sc.nextInt();
             switch (opcao){
                 case 0:
-                    //evento     
+                    System.err.println("Encerrando...");
+                    break;
                 case 1:
-                    //evento
-                        
+                    controle.criarEvento();
+                    break;
                 case 2:
-                    //evento
-                    
+                    controle.cadastrarPessoa();
+                    break;
                 case 3:
-                    //evento
-                
+                    System.err.println("Digite o ID do evento:");
+                    int id = sc.nextInt();
+                    System.err.println("Digite o nome da pessoa:");
+                    String nome = sc.next();
+                    controle.fazerInscricaoEvento(id, nome);
+                    break;
                 default:
+                    System.err.println("Opção");
+                    break;
             }
         } while(opcao != 0);
     }
