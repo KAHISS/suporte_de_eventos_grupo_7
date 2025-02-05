@@ -33,4 +33,12 @@ public class Pessoa {
         this.dataNascimento = dataDenascimento;
     }
 
+    public String toString() {
+        StringBuilder pessoasCadastradas = new StringBuilder();       
+        pessoasCadastradas.append("O nome dessa pessoa é: ").append(this.getNome()).append("\n");
+        pessoasCadastradas.append("O id dessa pessoa é: ").append(this.getId()).append("\n");
+        pessoasCadastradas.append("-----------------------------------------\n");
+        
+        return pessoasCadastradas.toString();
+    }
 }

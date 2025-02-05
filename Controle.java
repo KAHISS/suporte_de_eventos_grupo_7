@@ -1,3 +1,5 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -149,5 +151,96 @@ public class Controle {
         eventoEncontrado.setVagas(eventoEncontrado.getVagas() - 1);
         System.out.println("Inscrição realizada com sucesso.");
     }
+
+    public String imprimirEventos() {
+        StringBuilder detalhesEventos = new StringBuilder();
+        
+        for (int i = 0; i < eventos.size(); i++) {          
+            detalhesEventos.append(eventos.get(i).toString());
+        }
+        return detalhesEventos.toString();
+    }
+
+    public String imprimirPessoas() {
+        StringBuilder pessoasCadastradas = new StringBuilder();
+        for (int i = 0; i < pessoas.size(); i++) {          
+            pessoasCadastradas.append(pessoas.get(i).toString()).append("\n");
+        }
+        return pessoasCadastradas.toString();
+    }
+
+    public String imprimirInscritosEvento(int idEvento) {
+        Evento eventoEncontrado = null;
+        StringBuilder pessoasCadastradas = new StringBuilder();
+
+        for(Evento evento : eventos) {
+            if(evento.getId() == idEvento) {
+                eventoEncontrado = evento;
+            }
+        }
+
+        for(int i = 0; i < eventoEncontrado.getIncritos().size(); i++){
+            pessoasCadastradas.append(eventoEncontrado.getIncritos().get(i).toString()).append("\n");
+        }
+
+        return pessoasCadastradas.toString();
+    }
+
+    public String imprimirEventosTipo(String tipoEvento) {
+        StringBuilder tipoEventos = new StringBuilder();
+
+        for(Evento evento : eventos) {
+            if(evento.getTipoEvento().toString().equalsIgnoreCase(tipoEvento)) {
+                tipoEventos.append(evento.toString()).append("\n");
+            }
+        }
+
+        return tipoEventos.toString();
+    }
+
+    public String imprimirEventosComVaga() {
+        StringBuilder eventosComVaga = new StringBuilder();
+
+        for(Evento evento : eventos) {
+            if(evento.getVagas() > 0) {
+                eventosComVaga.append(evento.toString()).append("\n");
+            }
+        }
+
+        return eventosComVaga.toString();
+    }
+
+    public String imprimirEventosInscrito(String nomeInscrito) {
+        StringBuilder inscricoes = new StringBuilder();
+    
+        for(Evento evento : eventos) {
+            for (int i = 0; i < evento.getIncritos().size(); i++) {
+                if (evento.getIncritos().get(i).getNome().equalsIgnoreCase(nomeInscrito)) {
+                    inscricoes.append(nomeInscrito + " está inscrito em: ").append(evento.getTitulo()).append("\n");
+                }
+            }
+        }
+
+        return inscricoes.toString();
+    
+    }
+
+    public String imprimirEventosPeriodo(String dataInicial, String dataFinal) throws ParseException {
+        SimpleDateFormat data = new SimpleDateFormat("yyyy-MM-dd");
+        Date inicio = data.parse(dataInicial);
+        Date fim = data.parse(dataFinal);
+
+        StringBuilder eventosPeriodo = new StringBuilder();
+
+        for (Evento evento : eventos) {
+            Date dataEvento = evento.getDataFim();
+            if (!dataEvento.before(inicio) && !dataEvento.after(fim)) {
+                eventosPeriodo.append(evento.toString()).append("\n");
+            }
+        }
+
+        return eventosPeriodo.toString();
+    }
+
     
 }

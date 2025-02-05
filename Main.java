@@ -10,7 +10,7 @@ public class Main {
         int opcao = 0;
         do {
             System.out.println(
-                "0 - Sair\n1 - Criar evento\n2 - Cadastrar pessoa\n3 - Inscrever uma pessoa em um evento"
+                "0 - Sair\n1 - Criar evento\n2 - Cadastrar pessoa\n3 - Inscrever uma pessoa em um evento\n4 - Imprimir todos os eventos"
             );
             opcao = sc.nextInt();
             switch (opcao){
@@ -29,6 +29,9 @@ public class Main {
                     System.err.println("Digite o nome da pessoa:");
                     String nome = sc.next();
                     controle.fazerInscricaoEvento(id, nome);
+                    break;
+                case 4: 
+                    System.err.println(controle.imprimirEventos());
                     break;
                 default:
                     System.err.println("Opção");

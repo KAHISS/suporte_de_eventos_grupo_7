@@ -118,4 +118,28 @@ public class Evento {
     public void setVagas(int vagas) {
         this.vagas = vagas;
     }
+
+    public void inscreverPessoa(Pessoa p) {
+
+    }
+
+    public String toString() {
+        StringBuilder eventosString = new StringBuilder();
+
+        eventosString.append("O título do evento é: ").append(this.getTitulo()).append("\n");
+        eventosString.append("O ID desse evento é: ").append(this.getId()).append("\n");
+        eventosString.append("O tipo desse evento é: ").append(this.getTipoEvento()).append("\n");
+        
+        if(this.getTipoEvento() == TipoEvento.PALESTRA) {
+            eventosString.append("O dia em que esse evento vai ser realizado será em: ").append(this.getDataInicio()).append("\n");
+        } else  {
+            eventosString.append("O primeiro dia em que esse evento vai ser realizado será em: ").append(this.getDataInicio()).append(" e terminará em: ").append(this.getDataFim()).append("\n");
+        }
+
+        eventosString.append("O horário de início do evento será: ").append(this.getHorarioInicio()).append(" e terminará em: ").append(this.getHorarioFim()).append("\n");
+        
+        eventosString.append("-----------------------------------------\n");
+
+        return eventosString.toString();
+    }
 }
