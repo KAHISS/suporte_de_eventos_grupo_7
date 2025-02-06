@@ -15,7 +15,7 @@ public class Main {
                             2 - Cadastrar pessoa
                             3 - Inscrever uma pessoa em um evento
                             4 - Imprimir todos os eventos
-                            5 - Imprimir inscritos de un evento""");
+                            5 - Imprimir inscritos de um evento""");
 
             opcao = sc.nextInt();
             

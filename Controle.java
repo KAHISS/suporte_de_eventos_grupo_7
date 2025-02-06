@@ -30,50 +30,89 @@ public class Controle {
         Date dataInicio;
         Date dataFim = null;
         if (tipoEvento == TipoEvento.PALESTRA) {
-            System.out.println("Digite a sua data de nascimento (dia): ");
+            System.out.println("Digite a data da palestra (dia): ");
             int dia = scn.nextInt();
-            System.out.println("Digite a sua data de nascimento (mês): ");
+            System.out.println("Digite a data da palestra (mes): ");
             int mes = scn.nextInt() - 1;
-            System.out.println("Digite a sua data de nascimento (ano): ");
+            System.out.println("Digite a data da palestra (ano): ");
             int ano = scn.nextInt() - 1900;
             scn.nextLine();
+            if(dia <= 0 || dia > 31 || mes < 0 || mes >= 12 || ano < 125){
+                System.out.println("Erro: data do evento inválida.");
+                return;
+            }
             dataInicio = criarData(ano, mes, dia);
             dataFim = dataInicio;
         } else {
-            System.out.println("Digite a sua data de nascimento (dia): ");
+            System.out.println("Digite a data de ínicio do minicurso (dia): ");
             int diaInicio = scn.nextInt();
-            System.out.println("Digite a sua data de nascimento (mês): ");
+            System.out.println("Digite a data de ínicio do minicurso (mes): ");
             int mesInicio = scn.nextInt() - 1;
-            System.out.println("Digite a sua data de nascimento (ano): ");
+            System.out.println("Digite a data de ínicio do minicurso (ano): ");
             int anoInicio = scn.nextInt() - 1900;
             scn.nextLine();
+
+            if(diaInicio <= 0 || diaInicio > 31 || mesInicio < 0 || mesInicio >= 12 || anoInicio < 125){
+                System.out.println("Erro: data do evento inválida.");
+                return;
+            }
             dataInicio = criarData(anoInicio, mesInicio, diaInicio);
 
-            System.out.println("Digite a sua data de nascimento (dia): ");
+            System.out.println("Digite a data de término do minicurso (dia): ");
             int diaFim = scn.nextInt();
-            System.out.println("Digite a sua data de nascimento (mês): ");
+            System.out.println("Digite a data de término do minicurso (mes): ");
             int mesFim = scn.nextInt() - 1;
-            System.out.println("Digite a sua data de nascimento (ano): ");
+            System.out.println("Digite a data de término do minicurso (ano): ");
             int anoFim = scn.nextInt() - 1900;
             scn.nextLine();
+
+            if(diaFim <= 0 || diaFim > 31 || mesFim < 0 || mesFim >= 12 || anoFim < 125){
+                System.out.println("Erro: data do evento inválida.");
+                return;
+            }
+
             dataFim = criarData(anoFim, mesFim, diaFim);
         }
 
-        System.out.println("Digite o horario de início da evento(hora, minuto): ");
+        System.out.println("Digite o horario de início da evento(hora): ");
         int horaInicio = scn.nextInt();
+        System.out.println("Digite o horario de início da evento(minuto): ");
         int minInicio = scn.nextInt();
+
+        if(horaInicio < 0 || horaInicio > 24 || minInicio < 0 || minInicio >= 60){
+            System.out.println("Erro: horário do evento inválido.");
+            return;
+        }
+
         String horarioInicio = horaInicio + ":" + minInicio;
 
-        System.out.println("Digite o horario que a evento vai acabar(hora, minuto): ");
+        System.out.println("Digite o horario que a evento vai acabar(hora): ");
         int horaFim = scn.nextInt();
+        System.out.println("Digite o horario de início da evento(minuto): ");
         int minFim = scn.nextInt();
+
+        if(horaInicio < 0 || horaInicio > 24 || minInicio < 0 || minInicio >= 60){
+            System.out.println("Erro: horário do evento inválido.");
+            return;
+        }
+
         String horarioFim = horaFim + ":" + minFim;
 
         System.out.println("Digite a carga horária do evento: ");
         int cargaHoraria = scn.nextInt();
 
+        if(cargaHoraria <= 0){
+            System.out.println("Erro: carga horária inválida.");
+            return;
+        }
+
         System.out.println("Digite as vagas do evento: ");
         int vagas = scn.nextInt();
+
+        if(vagas < 0){
+            System.out.println("Erro: quantidade de vagas inválida.");
+            return;
+        }
 
         Evento evento;
         if (tipoEvento == TipoEvento.PALESTRA) {
@@ -90,7 +129,7 @@ public class Controle {
     private Date criarData(int ano, int mes, int dia) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, ano);
-        calendar.set(Calendar.MONTH, mes - 1);
+        calendar.set(Calendar.MONTH, mes);
         calendar.set(Calendar.DAY_OF_MONTH, dia);
         return calendar.getTime();
     }
@@ -101,6 +140,7 @@ public class Controle {
 
         System.out.println("Digite seu nome: ");
         String nome = scn.nextLine();
+        
 
         System.out.println("Digite a sua data de nascimento (dia): ");
         int dia = scn.nextInt();
@@ -109,10 +149,16 @@ public class Controle {
         System.out.println("Digite a sua data de nascimento (ano): ");
         int ano = scn.nextInt() - 1900;
         scn.nextLine();
+        if(dia <= 0 || dia > 31 || mes < 0 || mes >= 12 || ano < 0){
+            System.out.println("Erro: data de nascimento inválida.");
+            return;
+        }
+
         dataNascimento = criarData(ano, mes, dia);
 
         Pessoa pessoa = new Pessoa(nome, dataNascimento);
         pessoas.add(pessoa);
+        System.out.println("Cadastro realizado com sucesso!");
     }
 
     public void fazerInscricaoEvento(int idEvento, String nomeInscrito) {
@@ -241,6 +287,4 @@ public class Controle {
 
         return eventosPeriodo.toString();
     }
-
-    
 }
