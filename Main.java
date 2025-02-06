@@ -9,10 +9,16 @@ public class Main {
         //menu
         int opcao = 0;
         do {
-            System.out.println(
-                "0 - Sair\n1 - Criar evento\n2 - Cadastrar pessoa\n3 - Inscrever uma pessoa em um evento\n4 - Imprimir todos os eventos"
-            );
+            System.out.println("""
+                            0 - Sair
+                            1 - Criar evento
+                            2 - Cadastrar pessoa
+                            3 - Inscrever uma pessoa em um evento
+                            4 - Imprimir todos os eventos
+                            5 - Imprimir inscritos de un evento""");
+
             opcao = sc.nextInt();
+            
             switch (opcao){
                 case 0:
                     System.err.println("Encerrando...");
@@ -32,6 +38,11 @@ public class Main {
                     break;
                 case 4: 
                     System.err.println(controle.imprimirEventos());
+                    break;
+                case 5:
+                    System.out.println("Digite o ID do evento"); 
+                    id = sc.nextInt();
+                    System.err.println(controle.imprimirInscritosEvento(id));
                     break;
                 default:
                     System.err.println("Opção");
