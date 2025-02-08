@@ -10,84 +10,13 @@ public class Controle {
     private List<Evento> eventos = new ArrayList<>();
     private List<Pessoa> pessoas = new ArrayList<>();
 
-    public void criarEvento() {
-        Scanner scn = new Scanner(System.in);
-        System.out.println("Digite o título da evento: ");
-        String titulo = scn.nextLine();
-
-        System.out.println("Digite o tipo de evento (palestra/minicurso): ");
-        String tipo = scn.nextLine();
-        TipoEvento tipoEvento;
-        if (tipo.equalsIgnoreCase("palestra")) {
-            tipoEvento = TipoEvento.PALESTRA;
-        } else {
-            tipoEvento = TipoEvento.MINICURSO;
-        }
-
-        System.out.println("Digite o nome do palestrante: ");
-        String palestrante = scn.nextLine();
-
-        Date dataInicio;
-        Date dataFim = null;
-        if (tipoEvento == TipoEvento.PALESTRA) {
-            System.out.println("Digite a sua data de nascimento (dia): ");
-            int dia = scn.nextInt();
-            System.out.println("Digite a sua data de nascimento (mês): ");
-            int mes = scn.nextInt() - 1;
-            System.out.println("Digite a sua data de nascimento (ano): ");
-            int ano = scn.nextInt() - 1900;
-            scn.nextLine();
-            dataInicio = criarData(ano, mes, dia);
-            dataFim = dataInicio;
-        } else {
-            System.out.println("Digite a sua data de nascimento (dia): ");
-            int diaInicio = scn.nextInt();
-            System.out.println("Digite a sua data de nascimento (mês): ");
-            int mesInicio = scn.nextInt() - 1;
-            System.out.println("Digite a sua data de nascimento (ano): ");
-            int anoInicio = scn.nextInt() - 1900;
-            scn.nextLine();
-            dataInicio = criarData(anoInicio, mesInicio, diaInicio);
-
-            System.out.println("Digite a sua data de nascimento (dia): ");
-            int diaFim = scn.nextInt();
-            System.out.println("Digite a sua data de nascimento (mês): ");
-            int mesFim = scn.nextInt() - 1;
-            System.out.println("Digite a sua data de nascimento (ano): ");
-            int anoFim = scn.nextInt() - 1900;
-            scn.nextLine();
-            dataFim = criarData(anoFim, mesFim, diaFim);
-        }
-
-        System.out.println("Digite o horario de início da evento(hora, minuto): ");
-        int horaInicio = scn.nextInt();
-        int minInicio = scn.nextInt();
-        String horarioInicio = horaInicio + ":" + minInicio;
-
-        System.out.println("Digite o horario que a evento vai acabar(hora, minuto): ");
-        int horaFim = scn.nextInt();
-        int minFim = scn.nextInt();
-        String horarioFim = horaFim + ":" + minFim;
-
-        System.out.println("Digite a carga horária do evento: ");
-        int cargaHoraria = scn.nextInt();
-
-        System.out.println("Digite as vagas do evento: ");
-        int vagas = scn.nextInt();
-
-        Evento evento;
-        if (tipoEvento == TipoEvento.PALESTRA) {
-            evento = new Evento(titulo, palestrante, dataInicio, dataInicio, horarioInicio, horarioFim, cargaHoraria,
-                    tipoEvento, vagas);
-        } else {
-            evento = new Evento(titulo, palestrante, dataInicio, dataFim, horarioInicio, horarioFim, cargaHoraria,
-                    tipoEvento, vagas);
-        }
+    public void criarEvento(String titulo, TipoEvento tipoEvento, String palestrante, Date dataInicio, Date dataFim, String horarioInicio, String horarioFim,  int cargaHoraria, int vagas) {
+        Evento evento = new Evento(titulo, palestrante, dataInicio, dataInicio, horarioInicio, horarioFim, cargaHoraria, tipoEvento, vagas);
         eventos.add(evento);
         System.out.println("Evento criado com sucesso.");
     }
 
-    private Date criarData(int ano, int mes, int dia) {
+    public  Date criarData(int ano, int mes, int dia) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, ano);
         calendar.set(Calendar.MONTH, mes - 1);
