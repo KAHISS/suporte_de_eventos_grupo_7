@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -123,17 +124,23 @@ public class Evento {
 
     }
 
+    @Override
     public String toString() {
         StringBuilder eventosString = new StringBuilder();
 
         eventosString.append("O título do evento é: ").append(this.getTitulo()).append("\n");
         eventosString.append("O ID desse evento é: ").append(this.getId()).append("\n");
         eventosString.append("O tipo desse evento é: ").append(this.getTipoEvento()).append("\n");
+
+        Calendar dataInicio = Calendar.getInstance();
+        dataInicio.setTime(this.getDataInicio());
         
         if(this.getTipoEvento() == TipoEvento.PALESTRA) {
-            eventosString.append("O dia em que esse evento vai ser realizado será em: ").append(this.getDataInicio()).append("\n");
+            eventosString.append("O dia em que essa palestra vai ser realizada será em: ").append(dataInicio.get(Calendar.DAY_OF_MONTH)).append("/").append(dataInicio.get(Calendar.MONTH) + 1).append("/").append(dataInicio.get(Calendar.YEAR) + 1900).append("\n");
         } else  {
-            eventosString.append("O primeiro dia em que esse evento vai ser realizado será em: ").append(this.getDataInicio()).append(" e terminará em: ").append(this.getDataFim()).append("\n");
+            Calendar dataFim = Calendar.getInstance();
+            dataFim.setTime(this.getDataFim());
+            eventosString.append("O primeiro dia em que esse minicurso vai ser realizado será em: ").append(dataInicio.get(Calendar.DAY_OF_MONTH)).append("/").append(dataInicio.get(Calendar.MONTH) + 1).append("/").append(dataInicio.get(Calendar.YEAR) + 1900).append(" e terminará em: ").append(dataFim.get(Calendar.DAY_OF_MONTH)).append("/").append(dataInicio.get(Calendar.MONTH) + 1).append("/").append(dataFim.get(Calendar.YEAR) + 1900).append("\n");
         }
 
         eventosString.append("O horário de início do evento será: ").append(this.getHorarioInicio()).append(" e terminará em: ").append(this.getHorarioFim()).append("\n");

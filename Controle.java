@@ -1,17 +1,15 @@
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 public class Controle {
     private List<Evento> eventos = new ArrayList<>();
     private List<Pessoa> pessoas = new ArrayList<>();
 
     public void criarEvento(String titulo, TipoEvento tipoEvento, String palestrante, Date dataInicio, Date dataFim, String horarioInicio, String horarioFim,  int cargaHoraria, int vagas) {
-        Evento evento = new Evento(titulo, palestrante, dataInicio, dataInicio, horarioInicio, horarioFim, cargaHoraria, tipoEvento, vagas);
+        Evento evento = new Evento(titulo, palestrante, dataInicio, dataFim, horarioInicio, horarioFim, cargaHoraria, tipoEvento, vagas);
         eventos.add(evento);
         System.out.println("Evento criado com sucesso.");
     }
@@ -19,29 +17,15 @@ public class Controle {
     public  Date criarData(int ano, int mes, int dia) {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.YEAR, ano);
-        calendar.set(Calendar.MONTH, mes - 1);
+        calendar.set(Calendar.MONTH, mes);
         calendar.set(Calendar.DAY_OF_MONTH, dia);
         return calendar.getTime();
     }
 
-    public void cadastrarPessoa() {
-        Scanner scn = new Scanner(System.in);
-        Date dataNascimento;
-
-        System.out.println("Digite seu nome: ");
-        String nome = scn.nextLine();
-
-        System.out.println("Digite a sua data de nascimento (dia): ");
-        int dia = scn.nextInt();
-        System.out.println("Digite a sua data de nascimento (mês): ");
-        int mes = scn.nextInt() - 1;
-        System.out.println("Digite a sua data de nascimento (ano): ");
-        int ano = scn.nextInt() - 1900;
-        scn.nextLine();
-        dataNascimento = criarData(ano, mes, dia);
-
+    public void cadastrarPessoa(String nome, Date dataNascimento) {
         Pessoa pessoa = new Pessoa(nome, dataNascimento);
         pessoas.add(pessoa);
+        System.out.println("Cadastro realizado com sucesso!");
     }
 
     public void fazerInscricaoEvento(int idEvento, String nomeInscrito) {
@@ -154,22 +138,17 @@ public class Controle {
     
     }
 
-    public String imprimirEventosPeriodo(String dataInicial, String dataFinal) throws ParseException {
-        SimpleDateFormat data = new SimpleDateFormat("yyyy-MM-dd");
-        Date inicio = data.parse(dataInicial);
-        Date fim = data.parse(dataFinal);
+    public String imprimirEventosPeriodo(Date dataInicial, Date dataFinal) throws ParseException {
+        StringBuilder sb = new StringBuilder();
+        for (Evento lancamento : eventos) {
+            Date dataEvento = lancamento.getDataInicio();
 
-        StringBuilder eventosPeriodo = new StringBuilder();
-
-        for (Evento evento : eventos) {
-            Date dataEvento = evento.getDataFim();
-            if (!dataEvento.before(inicio) && !dataEvento.after(fim)) {
-                eventosPeriodo.append(evento.toString()).append("\n");
+            if (!dataEvento.before(dataInicial) && !dataEvento.after(dataFinal)) {
+                sb.append(lancamento.toString()).append("\n");
             }
         }
 
-        return eventosPeriodo.toString();
+        return sb.length() > 0 ? sb.toString() : "Nenhum lançamento encontrado no período.";
     }
 
-    
 }
